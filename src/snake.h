@@ -1,5 +1,5 @@
-enum Direction;
-enum Status;
+enum Direction { UP, DOWN, LEFT, RIGHT };
+enum Status { SUCCESS, FAIL };
 struct Snake;
 void display_snake(struct Snake* snake);
 enum Status move_snake(struct Snake* snake, enum Direction dir);

@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum Direction { UP, DOWN, LEFT, RIGHT };
-enum Status { SUCCESS, FAIL };
 
 struct Snake {
   int x;
@@ -58,21 +56,3 @@ enum Direction get_next_move() {
   return UP;
 }
 
-int main() {
-  initscr();
-  curs_set(0); // hide cursor
-
-  struct Snake *snake = create_snake();
-
-  while(true) {
-    display_snake(snake);
-    enum Direction dir = get_next_move();
-    enum Status status = move_snake(snake, dir);
-    if (status == FAIL) break;
-  }
-
-  //getmaxyx(stdscr, y, x);
-  getch();
-  //printf("Size: %d %d", x, y);
-  return 0;
-}

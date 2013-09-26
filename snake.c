@@ -1,6 +1,10 @@
 #include <ncurses.h>
+#include "snake.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+enum Direction { UP, DOWN, LEFT, RIGHT };
+enum Status { SUCCESS, FAIL };
 
 struct Snake {
   int x;
@@ -14,6 +18,25 @@ void display_snake(struct Snake* snake) {
     snake = snake->next;
   }
 
+}
+
+enum Status move_snake(struct Snake* snake, enum Direction dir) {
+  return FAIL;
+  struct Snake* start = snake;
+  // Go to the end
+  while(snake->next) {
+    snake = snake->next;
+  }
+  free(snake);
+}
+
+
+struct Snake* next_move(int x, int y, enum Direction dir) {
+  if (dir == LEFT && x == 0) {
+    return NULL;
+  } else if (dir == UP && y == 0) {
+    return NULL;
+  }
 }
 
 struct Snake* create_cell(int x, int y) {
@@ -31,12 +54,24 @@ struct Snake* create_snake() {
   return a;
 }
 
+enum Direction get_next_move() {
+  return UP;
+}
+
 int main() {
-  //int x;
-  //int y;
   initscr();
+  curs_set(0); // hide cursor
+
+  struct Snake *snake = create_snake();
+
+  while(true) {
+    display_snake(snake);
+    enum Direction dir = get_next_move();
+    enum Status status = move_snake(snake, dir);
+    if (status == FAIL) break;
+  }
+
   //getmaxyx(stdscr, y, x);
-  display_snake(create_snake());
   getch();
   //printf("Size: %d %d", x, y);
   return 0;

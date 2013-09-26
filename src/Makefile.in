@@ -1,0 +1,7 @@
+default: build
+
+build: snake.c
+	gcc -o snake main.c snake.c -lncurses
+
+run: build
+	./snake

@@ -1,5 +1,7 @@
-default: run
+default: build
 
-run:
-	gcc snake.c
-	./a.out
+build: snake.c
+	gcc -o snake snake.c -lncurses
+
+run: build
+	./snake

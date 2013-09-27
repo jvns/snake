@@ -3,13 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-struct Snake {
-  int x;
-  int y;
-  struct Snake* next;
-};
-
 void display_snake(struct Snake* snake) {
   while(snake) {
     mvprintw(snake->x, snake->y, "#");
@@ -18,8 +11,8 @@ void display_snake(struct Snake* snake) {
 
 }
 
-enum Status move_snake(struct Snake* snake, enum Direction dir) {
-  return FAIL;
+struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
+  return NULL;
   struct Snake* start = snake;
   // Go to the end
   while(snake->next) {

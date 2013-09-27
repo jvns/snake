@@ -6,7 +6,7 @@
 
 void display_snake(struct Snake* snake) {
   while(snake) {
-    mvprintw(snake->x, snake->y, "#");
+    mvprintw(snake->y, snake->x, "#");
     snake = snake->next;
   }
 
@@ -96,7 +96,19 @@ struct Snake* create_snake() {
   return a;
 }
 
-enum Direction get_next_move() {
-  return UP;
+enum Direction get_next_move(enum Direction previous) {
+  int ch = getch();
+  switch (ch) {
+    case KEY_LEFT:
+      return LEFT;
+    case KEY_RIGHT:
+      return RIGHT;
+    case KEY_DOWN:
+      return DOWN;
+    case KEY_UP:
+      return UP;
+    default:
+      return previous;
+  }
 }
 

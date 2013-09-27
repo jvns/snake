@@ -2,6 +2,7 @@
 #include "snake.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void display_snake(struct Snake* snake) {
   while(snake) {
@@ -11,11 +12,19 @@ void display_snake(struct Snake* snake) {
 
 }
 
+
 struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
-  // Create a new beginning
+  // Create a new beginning. Check boundaries.
   struct Snake* beginning = next_move(snake, dir, xmax, ymax);
   if (beginning == NULL) {
     return NULL;
+  }
+
+  // If we've gone backwards, don't do anything
+  if (snake->next && is_same_place(beginning, snake->next)) {
+    beginning->next = NULL;
+    free(beginning);
+    return snake;
   }
 
   // Attach the beginning to the rest of the snake
@@ -31,6 +40,10 @@ struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int 
   end->next = NULL;
 
   return snake;
+}
+
+bool is_same_place(struct Snake* cell1, struct Snake* cell2) {
+  return cell1->x == cell2->x && cell1->y == cell2->y;
 }
 
 

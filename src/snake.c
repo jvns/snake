@@ -27,9 +27,19 @@ struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int 
     return snake;
   }
 
+  // Check for collisions
+  struct Snake* s = snake;
+  while (s) {
+    if (is_same_place(s, beginning)) {
+      return NULL;
+    }
+    s = s->next;
+  }
+
   // Attach the beginning to the rest of the snake
   beginning->next = snake;
   snake = beginning;
+
 
   // Cut off the end
   struct Snake* end = snake;

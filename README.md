@@ -1,5 +1,4 @@
 snake
 =====
 
-Game of snake, in C. Does not work at all. But there are unit tests!
-Woop.
+Game of snake, in C. Right there is a moving snake, but no food.

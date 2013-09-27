@@ -5,11 +5,9 @@ int main() {
   initscr();
   cbreak();
   noecho();
-  keypad(stdscr, TRUE);
+  keypad(stdscr, TRUE); // make keys work
   curs_set(0); // hide cursor
   timeout(100);
-  //init_pair(1, COLOR_RED, COLOR_GREEN);
-  //attron(COLOR_PAIR(1));
 
   struct Snake *snake = create_snake();
   int xmax;
@@ -23,8 +21,7 @@ int main() {
     snake = move_snake(snake, dir, xmax, ymax);
     if (snake == NULL) break;
   }
+  endwin();
 
-  getch();
-  //printf("Size: %d %d", x, y);
   return 0;
 }

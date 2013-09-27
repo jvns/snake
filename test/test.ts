@@ -51,10 +51,10 @@
     fail_unless(next_move(snake, RIGHT, 2, 2) != NULL);
 
 #test test_next_move_bottom
-    struct Snake* snake = create_cell(1, 2);
+    struct Snake* snake = create_cell(0, 1);
     fail_unless(next_move(snake, DOWN, 2, 2) == NULL);
+    fail_unless(next_move(snake, LEFT, 2, 2) == NULL);
     fail_unless(next_move(snake, UP, 2, 2) != NULL);
-    fail_unless(next_move(snake, LEFT, 2, 2) != NULL);
     fail_unless(next_move(snake, RIGHT, 2, 2) != NULL);
 
 #test test_next_move_left

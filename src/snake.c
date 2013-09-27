@@ -6,12 +6,11 @@
 
 void display_snake(struct Snake* snake) {
   while(snake) {
-    mvprintw(snake->y, snake->x, "#");
+    mvaddch(snake->y, snake->x, ACS_BLOCK);
     snake = snake->next;
   }
 
 }
-
 
 struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
   // Create a new beginning. Check boundaries.
@@ -74,7 +73,7 @@ struct Snake* next_move(struct Snake* snake, enum Direction dir, int xmax, int y
       new_x = snake->x + 1;
       break;
   }
-  if (new_x < 0 || new_y < 0 || new_x > xmax || new_y > ymax) {
+  if (new_x < 0 || new_y < 0 || new_x >= xmax || new_y >= ymax) {
     return NULL;
   } else {
     return create_cell(new_x, new_y);

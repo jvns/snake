@@ -8,6 +8,8 @@ int main() {
   keypad(stdscr, TRUE);
   curs_set(0); // hide cursor
   timeout(100);
+  //init_pair(1, COLOR_RED, COLOR_GREEN);
+  //attron(COLOR_PAIR(1));
 
   struct Snake *snake = create_snake();
   int xmax;

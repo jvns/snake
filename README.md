@@ -1,6 +1,5 @@
 snake
 =====
 
-This really does not work. Right now I am trying to figure out how to do unit testing in C. 
-
-HELP.
+Game of snake, in C. Does not work at all. But there are unit tests!
+Woop.

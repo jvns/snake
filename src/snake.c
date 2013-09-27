@@ -12,21 +12,49 @@ void display_snake(struct Snake* snake) {
 }
 
 struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
-  return NULL;
-  struct Snake* start = snake;
-  // Go to the end
-  while(snake->next) {
-    snake = snake->next;
+  // Create a new beginning
+  struct Snake* beginning = next_move(snake, dir, xmax, ymax);
+  if (beginning == NULL) {
+    return NULL;
   }
-  free(snake);
+
+  // Attach the beginning to the rest of the snake
+  beginning->next = snake;
+  snake = beginning;
+
+  // Cut off the end
+  struct Snake* end = snake;
+  while(end->next->next) {
+    end = end->next;
+  }
+  free(end->next);
+  end->next = NULL;
+
+  return snake;
 }
 
 
-struct Snake* next_move(int x, int y, enum Direction dir) {
-  if (dir == LEFT && x == 0) {
+struct Snake* next_move(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
+  int new_x = snake->x;
+  int new_y = snake->y;
+  switch(dir) {
+    case UP:
+      new_y = snake->y - 1;
+      break;
+    case DOWN:
+      new_y = snake->y + 1;
+      break;
+    case LEFT:
+      new_x = snake->x - 1;
+      break;
+    case RIGHT:
+      new_x = snake->x + 1;
+      break;
+  }
+  if (new_x < 0 || new_y < 0 || new_x > xmax || new_y > ymax) {
     return NULL;
-  } else if (dir == UP && y == 0) {
-    return NULL;
+  } else {
+    return create_cell(new_x, new_y);
   }
 }
 

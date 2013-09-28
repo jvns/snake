@@ -13,13 +13,13 @@ enum Direction get_next_move(enum Direction previous) {
   int ch = getch();
   switch (ch) {
     case KEY_LEFT:
-      return LEFT;
+      if (previous != RIGHT) return LEFT;
     case KEY_RIGHT:
-      return RIGHT;
+      if (previous != LEFT) return RIGHT;
     case KEY_DOWN:
-      return DOWN;
+      if (previous != UP) return DOWN;
     case KEY_UP:
-      return UP;
+      if (previous != DOWN) return UP;
     default:
       return previous;
   }

@@ -1,14 +1,14 @@
 default: build
 
-build: src/snake.c src/main.c
-	gcc -o snake src/main.c src/snake.c -lncurses
+build:
+	gcc -o snake src/main.c src/backend.c src/frontend.c -lncurses
 
 run: build
 	./snake
 
-tests: src/snake.c src/snake.h test/test.ts
+tests:
 	checkmk test/test.ts > test/test.c
-	gcc -o run_tests src/snake.c src/snake.h test/test.c -lncurses -lcheck
+	gcc -o run_tests src/backend.c src/backend.h test/test.c -lncurses -lcheck
 	./run_tests
 
 clean:

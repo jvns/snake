@@ -1,4 +1,5 @@
-#include "snake.h"
+#include "backend.h"
+#include "frontend.h"
 #include <ncurses.h>
 
 int main() {

@@ -1,16 +1,7 @@
-#include <ncurses.h>
-#include "snake.h"
+#include "backend.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-void display_snake(struct Snake* snake) {
-  while(snake) {
-    mvaddch(snake->y, snake->x, ACS_BLOCK);
-    snake = snake->next;
-  }
-
-}
 
 struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
   // Create a new beginning. Check boundaries.
@@ -95,19 +86,5 @@ struct Snake* create_snake() {
   return a;
 }
 
-enum Direction get_next_move(enum Direction previous) {
-  int ch = getch();
-  switch (ch) {
-    case KEY_LEFT:
-      return LEFT;
-    case KEY_RIGHT:
-      return RIGHT;
-    case KEY_DOWN:
-      return DOWN;
-    case KEY_UP:
-      return UP;
-    default:
-      return previous;
-  }
-}
+
 

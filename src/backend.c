@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
+PointList* move_snake(PointList* snake, enum Direction dir, int xmax, int ymax) {
   // Create a new beginning. Check boundaries.
-  struct Snake* beginning = next_move(snake, dir, xmax, ymax);
+  PointList* beginning = next_move(snake, dir, xmax, ymax);
   if (beginning == NULL) {
     return NULL;
   }
@@ -18,7 +18,7 @@ struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int 
   }
 
   // Check for collisions
-  struct Snake* s = snake;
+  PointList* s = snake;
   while (s) {
     if (is_same_place(s, beginning)) {
       return NULL;
@@ -32,7 +32,7 @@ struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int 
 
 
   // Cut off the end
-  struct Snake* end = snake;
+  PointList* end = snake;
   while(end->next->next) {
     end = end->next;
   }
@@ -42,12 +42,12 @@ struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int 
   return snake;
 }
 
-bool is_same_place(struct Snake* cell1, struct Snake* cell2) {
+bool is_same_place(PointList* cell1, PointList* cell2) {
   return cell1->x == cell2->x && cell1->y == cell2->y;
 }
 
 
-struct Snake* next_move(struct Snake* snake, enum Direction dir, int xmax, int ymax) {
+PointList* next_move(PointList* snake, enum Direction dir, int xmax, int ymax) {
   int new_x = snake->x;
   int new_y = snake->y;
   switch(dir) {
@@ -71,20 +71,18 @@ struct Snake* next_move(struct Snake* snake, enum Direction dir, int xmax, int y
   }
 }
 
-struct Snake* create_cell(int x, int y) {
-  struct Snake* cell = malloc(sizeof(*cell));
+PointList* create_cell(int x, int y) {
+  PointList* cell = malloc(sizeof(*cell));
   cell->x = x;
   cell->y = y;
   cell->next = NULL;
   return cell;
 }
 
-struct Snake* create_snake() {
-  struct Snake* a = create_cell(2,3);
-  struct Snake* b = create_cell(2,2);
+PointList* create_snake() {
+  PointList* a = create_cell(2,3);
+  PointList* b = create_cell(2,2);
   a->next = b;
   return a;
 }
-
-
 

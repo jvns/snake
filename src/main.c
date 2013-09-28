@@ -10,7 +10,7 @@ int main() {
   curs_set(0); // hide cursor
   timeout(100);
 
-  struct Snake *snake = create_snake();
+  PointList *snake = create_snake();
   int xmax;
   int ymax;
   getmaxyx(stdscr, ymax, xmax);

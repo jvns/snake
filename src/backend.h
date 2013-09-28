@@ -1,13 +1,14 @@
 #include <stdbool.h>
 
 enum Direction { UP, DOWN, LEFT, RIGHT };
-struct Snake {
+struct PointList {
   int x;
   int y;
-  struct Snake* next;
+  struct PointList* next;
 };
-bool is_same_place(struct Snake* cell1, struct Snake* cell2);
-struct Snake* move_snake(struct Snake* snake, enum Direction dir, int xmax, int ymax);
-struct Snake* next_move(struct Snake* snake, enum Direction dir, int xmax, int ymax);
-struct Snake* create_cell(int x, int y);
-struct Snake* create_snake();
+typedef struct PointList PointList;
+bool is_same_place(PointList* cell1, PointList* cell2);
+PointList* move_snake(PointList* snake, enum Direction dir, int xmax, int ymax);
+PointList* next_move(PointList* snake, enum Direction dir, int xmax, int ymax);
+PointList* create_cell(int x, int y);
+PointList* create_snake();

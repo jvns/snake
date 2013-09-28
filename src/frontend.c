@@ -2,7 +2,7 @@
 #include "backend.h"
 #include "frontend.h"
 
-void display_snake(struct Snake* snake) {
+void display_snake(PointList* snake) {
   while(snake) {
     mvaddch(snake->y, snake->x, ACS_BLOCK);
     snake = snake->next;

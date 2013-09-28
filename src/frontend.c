@@ -2,9 +2,9 @@
 #include "backend.h"
 #include "frontend.h"
 
-void display_snake(PointList* snake) {
+void display_points(PointList* snake, const chtype symbol) {
   while(snake) {
-    mvaddch(snake->y, snake->x, ACS_BLOCK);
+    mvaddch(snake->y, snake->x, symbol);
     snake = snake->next;
   }
 }

@@ -17,7 +17,7 @@ int main() {
   enum Direction dir = RIGHT;
   while(true) {
     erase();
-    display_snake(snake);
+    display_points(snake, ACS_BLOCK);
     dir = get_next_move(dir);
     snake = move_snake(snake, dir, xmax, ymax);
     if (snake == NULL) break;

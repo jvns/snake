@@ -68,3 +68,13 @@
     PointList* moved = next_move(snake, UP, 4, 4);
     fail_unless(moved->x == 2);
     fail_unless(moved->y == 1);
+
+#test test_create_random_cell
+    PointList* cell1 = create_random_cell(20, 10);
+    PointList* cell2 = create_random_cell(20, 10);
+    fail_unless(!(cell1->x == cell2->x && cell1->y == cell2->y));
+    fail_unless(cell1->x < 20);
+    fail_unless(cell2->x < 20);
+    fail_unless(cell1->y < 10);
+    fail_unless(cell2->y < 10);
+

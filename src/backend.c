@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 PointList* move_snake(PointList* snake, enum Direction dir, int xmax, int ymax) {
   // Create a new beginning. Check boundaries.
@@ -69,6 +70,10 @@ PointList* next_move(PointList* snake, enum Direction dir, int xmax, int ymax) {
   } else {
     return create_cell(new_x, new_y);
   }
+}
+
+PointList* create_random_cell(int xmax, int ymax) {
+  return create_cell(rand() % xmax, rand() % ymax);
 }
 
 PointList* create_cell(int x, int y) {

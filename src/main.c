@@ -10,17 +10,22 @@ int main() {
   curs_set(0); // hide cursor
   timeout(100);
 
-  PointList *snake = create_snake();
   int xmax;
   int ymax;
   getmaxyx(stdscr, ymax, xmax);
   enum Direction dir = RIGHT;
+
+  // Add 2 foods
+  Board* board = create_board(create_snake(), NULL, xmax, ymax);
+  add_new_food(board);
+
   while(true) {
     erase();
-    display_points(snake, ACS_BLOCK);
+    display_points(board->snake, ACS_BLOCK);
+    display_points(board->foods, ACS_DIAMOND);
     dir = get_next_move(dir);
-    snake = move_snake(snake, dir, xmax, ymax);
-    if (snake == NULL) break;
+    enum Status status = move_snake(board, dir);
+    if (status == FAILURE) break;
   }
   endwin();
 

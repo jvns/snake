@@ -19,12 +19,8 @@ PointList* move_snake(PointList* snake, enum Direction dir, int xmax, int ymax) 
   }
 
   // Check for collisions
-  PointList* s = snake;
-  while (s) {
-    if (is_same_place(s, beginning)) {
-      return NULL;
-    }
-    s = s->next;
+  if (list_contains(beginning, snake)) {
+    return NULL;
   }
 
   // Attach the beginning to the rest of the snake
@@ -74,6 +70,26 @@ PointList* next_move(PointList* snake, enum Direction dir, int xmax, int ymax) {
 
 PointList* create_random_cell(int xmax, int ymax) {
   return create_cell(rand() % xmax, rand() % ymax);
+}
+
+PointList* add_new_food(PointList* foods, PointList* snake, int xmax, int ymax) {
+  PointList* new_food;
+  do {
+    new_food = create_random_cell(xmax, ymax);
+  } while(list_contains(new_food, foods) || list_contains(new_food, snake));
+  new_food->next = foods;
+  return new_food;
+}
+
+bool list_contains(PointList* cell, PointList* list) {
+  PointList* s = list;
+  while (s) {
+    if (is_same_place(s, cell)) {
+      return true;
+    }
+    s = s->next;
+  }
+  return false;
 }
 
 PointList* create_cell(int x, int y) {

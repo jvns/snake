@@ -78,3 +78,30 @@
     fail_unless(cell1->y < 10);
     fail_unless(cell2->y < 10);
 
+#test test_list_contains_true
+    PointList* cell = create_cell(1, 2);
+    PointList* list = create_cell(2, 2);
+    list->next = create_cell(1, 2);
+    fail_unless(list_contains(cell, list));
+
+#test test_list_contains_false
+    PointList* cell = create_cell(4, 2);
+    PointList* list = create_cell(2, 2);
+    list->next = create_cell(1, 2);
+    fail_unless(!list_contains(cell, list));
+
+#test test_add_new_food_null
+    PointList* snake = create_cell(4, 2);
+    snake->next = create_cell(4,3);
+    PointList* foods = add_new_food(NULL, snake, 10, 10);
+    fail_unless(foods != NULL);
+    fail_unless(foods->next == NULL);
+    fail_unless(!list_contains(foods, snake));
+
+#test test_add_new_food
+    PointList* snake = create_cell(4, 2);
+    snake->next = create_cell(4,3);
+    PointList* foods = create_cell(3, 3);
+    foods = add_new_food(foods, snake, 10, 10);
+    fail_unless(foods->next != NULL);
+    fail_unless(foods->next->next == NULL);

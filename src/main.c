@@ -15,9 +15,11 @@ int main() {
   getmaxyx(stdscr, ymax, xmax);
   enum Direction dir = RIGHT;
 
-  // Add 2 foods
   Board* board = create_board(create_snake(), NULL, xmax, ymax);
-  add_new_food(board);
+  int i;
+  for (i = 0; i < 6; i++) {
+    add_new_food(board);
+  }
 
   while(true) {
     erase();

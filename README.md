@@ -8,6 +8,10 @@ You can run it using
 ```
 make run
 ```
+Then do
+```
+./snake
+```
 
 This was the biggest C program I'd written so far, so I'm pretty happy
 with it. There's a separate frontend and backend so theoretically it

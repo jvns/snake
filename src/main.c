@@ -22,9 +22,10 @@ int main() {
   }
 
   while(true) {
-    erase();
+    clear();
     display_points(board->snake, ACS_BLOCK);
     display_points(board->foods, ACS_DIAMOND);
+    refresh();
     dir = get_next_move(dir);
     enum Status status = move_snake(board, dir);
     if (status == FAILURE) break;

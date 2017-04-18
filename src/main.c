@@ -1,6 +1,12 @@
 #include "backend.h"
 #include "frontend.h"
 #include <ncurses.h>
+#include <string.h>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 int main() {
   initscr();
@@ -9,6 +15,8 @@ int main() {
   keypad(stdscr, TRUE); // make keys work
   curs_set(0); // hide cursor
   timeout(100);
+  char game_over[] = "Game Over!\n";
+  int end;
 
   int xmax;
   int ymax;
@@ -30,6 +38,12 @@ int main() {
     enum Status status = move_snake(board, dir);
     if (status == FAILURE) break;
   }
+
+  attron(A_BOLD);
+  mvprintw(ymax/2, (xmax - strlen(game_over))/2, game_over);
+  echo();
+  refresh();
+  sleep(2);
   endwin();
 
   return 0;

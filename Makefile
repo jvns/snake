@@ -1,7 +1,7 @@
 default: build
 
 build:
-	gcc -o snake src/main.c src/backend.c src/frontend.c -lncurses
+	gcc -g -o snake src/main.c src/backend.c src/frontend.c -lncurses
 
 run: build
 	./snake
